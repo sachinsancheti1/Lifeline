@@ -1,0 +1,55 @@
+[
+	{
+		"person1": {
+			"first_name": "Michael",
+			"last_name": "Enos",
+			"place": "Coimbatore",
+			"date": "02-10-1949",
+			"gender": "Male"
+		},
+		"person2": {
+			"first_name": "Fabian",
+			"last_name": "Enos",
+			"middle_name": "Marc Craig",
+			"place": "Coimbatore",
+			"date": "08-01-1993",
+			"gender": "Male"
+		},
+		"relationship": "Father"
+	},
+	{
+		"person1": {
+			"first_name": "Michael",
+			"last_name": "Enos",
+			"place": "Coimbatore",
+			"date": "02-10-1949",
+			"gender": "Male"
+		},
+		"person2": {
+			"first_name": "Brendan",
+			"last_name": "Enos",
+			"middle_name": "Paul Julien",
+			"place": "Coimbatore",
+			"date": "16-10-1996",
+			"gender": "Male"
+		},
+		"relationship": "Father"
+	},{
+		"person1": {
+			"first_name": "Michael",
+			"last_name": "Enos",
+			"place": "Coimbatore",
+			"date": "02-10-1949",
+			"gender": "Male"
+		},
+		"person2": {
+			"first_name": "Shannon",
+			"last_name": "Enos",
+			"middle_name": "Duane",
+			"place": "Coimbatore",
+			"date": "11-02-1998",
+			"gender": "Male"
+		},
+		"relationship": "Father"
+	}
+]
