@@ -1,3 +1,6 @@
+# Lifeline 
+# Copyright 2015 Fabian Enos and Sachin Sancheti
+# Licensed under MIT (https://github.com/sachinsancheti1/Lifeline/blob/master/LICENSE)
 
 # This is the user-interface definition of a Shiny web application.
 # You can find out more about building applications with Shiny here:
