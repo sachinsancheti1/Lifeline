@@ -1,3 +1,7 @@
+# Lifeline 
+# Copyright 2015 Fabian Enos and Sachin Sancheti
+# Licensed under MIT (https://github.com/sachinsancheti1/Lifeline/blob/master/LICENSE)
+
 import json
 from py2neo import Graph, Node, Relationship
 
