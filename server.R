@@ -10,46 +10,33 @@
 
 library(shiny)
 library(jsonlite)
-people <- fromJSON("import.json")
+library(RNeo4j)
+graph = startGraph("http://localhost:7474/db/data/")
+query = "MATCH n RETURN n.first_name,n.last_name,n.gender,n.middle_name,n.date,n.place,ID(n)"
 
-splitca = function(x) strsplit(x,split = " ")[[1]]
-frel = function(fa,ma,ca){
-  fa = strsplit(fa,split = " ")[[1]]
-  ma = strsplit(ma,split = " ")[[1]]
-  t = length(ca)
-  ca = apply(as.data.frame(ca),1,splitca)
+idss = cypher(graph, query)
+
+
+frel = function(idss,fa,ma,ca){
+  father = idss[idss[,"ID(n)"]==fa,] %>% tbl_df
+  mother = idss[idss[,"ID(n)"]==ma,] %>% tbl_df
+  child = idss[idss[,"ID(n)"] %in% ca,] %>% tbl_df
   tr = list()
-  if(!is.null(fa))
-  {
-    for(i in 1:t){
-      r = list(person1=people[people$first_name==fa[1] &
-                                people$last_name==fa[2],],
-               person2=people[people$first_name==ca[1,i] &
-                                people$last_name==ca[2,i],],
-               relationship="Father")
-      tr = append(tr,list(r))
-    }
+  for(i in 1:nrow(child)){
+    r = list(person1 = father,person2 = child[i,], relationship = "Father")
+    s = list(person1 = mother,person2 = child[i,], relationship = "Mother")
+    tr = append(tr,c(list(r),list(s)))
   }
-  
-  if(!is.null(ma)){
-    for(i in 1:t){
-      r = list(person1=people[people$first_name==ma[1] &
-                                people$last_name==ma[2],],
-               person2=people[people$first_name==ca[1,i] &
-                                people$last_name==ca[2,i],],
-               relationship="Mother")
-      tr = append(tr,list(r))
-    }
-  }
-  tr
+  return(tr)
 }
 
 shinyServer(function(input, output) {
   output$jt <- renderText({
-    input$submit
-    if (input$submit == 0)
-      return()
-    relationlist = isolate(frel(input$father,input$mother,input$children))
-    paste("Input text is:",toJSON(relationlist))
+     input$submit
+     if (input$submit == 0)
+       return()
+    relationlist = frel(idss,input$father,input$mother,input$children)
+#     paste(relationlist)
+    paste("Input text is:",input$father,toJSON(relationlist))
   })
 })

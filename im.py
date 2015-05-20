@@ -7,7 +7,7 @@ from py2neo import Graph, Node, Relationship
 
 # files to use
 file = 'import.json'
-rel_file = 'rel.json'
+rel_file = 'sachin-ahnentafel.json'
 
 # connect to the default graph
 graph = Graph()
