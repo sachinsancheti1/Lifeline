@@ -11,6 +11,7 @@
 library(shiny)
 library(jsonlite)
 library(RNeo4j)
+library(dplyr)
 graph = startGraph("http://localhost:7474/db/data/")
 query = "MATCH n RETURN n.first_name,n.last_name,n.gender,n.middle_name,n.date,n.place,ID(n)"
 
